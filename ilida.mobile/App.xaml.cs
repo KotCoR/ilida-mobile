@@ -8,7 +8,9 @@ namespace ilida.mobile
 		{
 			InitializeComponent();
 
-			//MainPage = new ilida.mobilePage();
+			var loginview = new LoginView();
+			loginview.BindingContext = new LoginViewModel();
+			MainPage = loginview;
 		}
 
 		protected override void OnStart()

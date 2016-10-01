@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ilida.mobile.AccidentListView">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ilida.mobile.AccidentListView" Title="Διαχείριση Περιστατικών">
 	<ContentPage.Content>
 	</ContentPage.Content>
-	<Label Text="Navigation Successfull!" />
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="50" />
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0" Margin="5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Text="#" HorizontalOptions="Center" />
+			<Label Grid.Column="1" Text="Ημερομηνία" HorizontalOptions="Center" />
+			<Label Grid.Column="2" Text="Κατάσταση" HorizontalOptions="Center" />
+		</Grid>
+		<ListView Grid.Row="1" ItemsSource="{Binding Accidents}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout BackgroundColor="#eee" Orientation="Vertical">
+							<Grid Margin="5">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition />
+									<ColumnDefinition />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+								<Label Grid.Column="0" Text="{Binding AccidentId}" HorizontalOptions="Center" />
+								<Label Grid.Column="1" Text="{Binding Date}" HorizontalOptions="Center" />
+								<Label Grid.Column="2" Text="{Binding Status}" HorizontalOptions="Center" />
+							</Grid>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<Button Grid.Row="2" Text="Υποβολή Περιστατικού" FontFamily="" BackgroundColor="#5CB75C" TextColor="White" Scale="0.7" >
+			<!--<Button.FontFamily>
+				<OnPlatform x:TypeArguments="x:String">
+					<OnPlatform.iOS>
+					</OnPlatform.iOS>
+					<OnPlatform.Android>
+						serif
+					</OnPlatform.Android>
+					<OnPlatform.WinPhone>
+					</OnPlatform.WinPhone>
+				</OnPlatform>
+			</Button.FontFamily>-->
+		</Button>
+	</Grid>
 </ContentPage>

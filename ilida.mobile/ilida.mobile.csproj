@@ -41,6 +41,9 @@
     <EmbeddedResource Include="Views\SubmitAccidentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AccidentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -67,6 +70,11 @@
     </Compile>
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="ViewModels\SubmitAccidentViewModel.cs" />
+    <Compile Include="Views\AccidentView.xaml.cs">
+      <DependentUpon>AccidentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AccidentViewModel.cs" />
+    <Compile Include="Models\Notification.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

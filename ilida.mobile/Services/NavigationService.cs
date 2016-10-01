@@ -60,8 +60,16 @@ namespace ilida.mobile
 
 		public async Task PushAsync(BaseViewModel viewModel)
 		{
-			var view = _vMsToViews[viewModel];
-			await this._navigation.PushAsync(view);
+			foreach (var vm in _vMsToViews.Keys)
+			{
+				if (viewModel.GetType() == vm.GetType())
+				{
+					var view = this._vMsToViews[vm];
+					view.BindingContext = viewModel;
+					await this._navigation.PushAsync(view);
+					return;
+				}
+			}
 		}
 
 		public async Task PushAsync<T>(Action<T> initialize = null) where T : BaseViewModel

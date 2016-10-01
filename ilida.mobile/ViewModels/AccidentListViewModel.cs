@@ -19,9 +19,11 @@ namespace ilida.mobile
 				new Accident(){ AccidentId="732291", Date="12/03/2015 11:00", Status="Ολοκληρώθηκε"}
 			};
 			SubmitCommand = new Command(async () => await Submit());
+			SelectCommand = new Command<Accident>(async (a) => await Select(a));
 		}
 
 		public ICommand SubmitCommand { get; set; }
+		public ICommand SelectCommand { get; set; }
 
 		private ICollection<Accident> _accidents;
 		public ICollection<Accident> Accidents
@@ -37,9 +39,39 @@ namespace ilida.mobile
 			}
 		}
 
+		private Accident _selectedItem;
+		public Accident SelectedItem
+		{
+			get
+			{
+				return _selectedItem;
+			}
+			set
+			{
+				_selectedItem = value;
+				if (_selectedItem == null)
+				{
+					return;
+				}
+				SelectCommand.Execute(_selectedItem);
+				_selectedItem = null;
+				OnPropertyChanged(nameof(SelectedItem));
+			}
+		}
+
 		public async Task Submit()
 		{
 			await _nav.PushAsync<SubmitAccidentViewModel>();
+		}
+
+		public async Task Select(Accident a)
+		{
+			var avm = new AccidentViewModel(_nav)
+			{
+				AccidentId = a.AccidentId,
+				Status = a.Status
+			};
+			await _nav.PushAsync(avm);
 		}
 
 	}

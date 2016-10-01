@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -6,9 +7,12 @@ namespace ilida.mobile
 {
 	public class LoginViewModel : BaseViewModel
 	{
-		public LoginViewModel()
+		INavigationService _nav;
+
+		public LoginViewModel(INavigationService nav)
 		{
-			this.Login = new Command(() => DoLogin());
+			this._nav = nav;
+			this.LoginCommand = new Command(() => Login());
 		}
 
 		private string _username;
@@ -41,11 +45,11 @@ namespace ilida.mobile
 			}
 		}
 
-		public ICommand Login { get; set; }
+		public ICommand LoginCommand { get; set; }
 
-		public void DoLogin()
+		public async Task Login()
 		{
-
+			await _nav.PushAsync<AccidentListViewModel>();
 		}
 	}
 }

@@ -38,7 +38,7 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<Button Grid.Row="2" Text="Υποβολή Περιστατικού" FontFamily="" BackgroundColor="#5CB75C" TextColor="White" Scale="0.7" >
+		<Button Grid.Row="2" Text="Υποβολή Περιστατικού" FontFamily="" BackgroundColor="#5CB75C" TextColor="White" Scale="0.7" Command="{Binding SubmitCommand}" >
 			<!--<Button.FontFamily>
 				<OnPlatform x:TypeArguments="x:String">
 					<OnPlatform.iOS>

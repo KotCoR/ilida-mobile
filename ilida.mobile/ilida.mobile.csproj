@@ -65,6 +65,8 @@
     <Compile Include="Views\SubmitAccidentView.xaml.cs">
       <DependentUpon>SubmitAccidentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="ViewModels\SubmitAccidentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

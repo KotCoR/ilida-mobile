@@ -16,12 +16,16 @@ namespace ilida.mobile
 			_nav = nav;
 			_vehicles = new ObservableCollection<Vehicle>()
 			{
-				new Vehicle(){VehicleId=1}
+				new Vehicle(){VehicleId=1, Parent=this}
 			};
 			AddVehicleCommand = new Command(() => AddVehicle());
+			RemoveCommand = new Command<int>((id) => RemoveVehicle(id));
+			SubmitCommand = new Command(() => Submit());
 		}
 
 		public ICommand AddVehicleCommand { get; set; }
+		public ICommand RemoveCommand { get; set; }
+		public ICommand SubmitCommand { get; set; }
 
 		private ObservableCollection<Vehicle> _vehicles;
 		public ObservableCollection<Vehicle> Vehicles
@@ -39,12 +43,34 @@ namespace ilida.mobile
 
 		public void AddVehicle()
 		{
-			var id = _vehicles.Last().VehicleId + 1;
+			var last = _vehicles.LastOrDefault();
+			int id = 1;
+			if (last != null)
+			{
+				id = last.VehicleId + 1;
+			}
+
 			var vehicle = new Vehicle()
 			{
-				VehicleId = id
+				VehicleId = id,
+				Parent = this
 			};
 			_vehicles.Add(vehicle);
+		}
+
+		public void RemoveVehicle(int id)
+		{
+			var vehicle = _vehicles.Where(v => v.VehicleId == id).FirstOrDefault();
+			if (vehicle != null)
+			{
+				_vehicles.Remove(vehicle);
+			}
+
+		}
+
+		public void Submit()
+		{
+
 		}
 	}
 }

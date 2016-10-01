@@ -18,20 +18,20 @@
 			<Label Grid.Column="1" Text="Ημερομηνία" HorizontalOptions="Center" />
 			<Label Grid.Column="2" Text="Κατάσταση" HorizontalOptions="Center" />
 		</Grid>
-		<ListView Grid.Row="1" ItemsSource="{Binding Accidents}">
+		<ListView Grid.Row="1" ItemsSource="{Binding Accidents}" SeparatorVisibility="None">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
 						<StackLayout BackgroundColor="#eee" Orientation="Vertical">
-							<Grid Margin="5">
+							<Grid Margin="5" VerticalOptions="Center">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition />
 									<ColumnDefinition />
 									<ColumnDefinition />
 								</Grid.ColumnDefinitions>
-								<Label Grid.Column="0" Text="{Binding AccidentId}" HorizontalOptions="Center" />
-								<Label Grid.Column="1" Text="{Binding Date}" HorizontalOptions="Center" />
-								<Label Grid.Column="2" Text="{Binding Status}" HorizontalOptions="Center" />
+								<Label Grid.Column="0" Text="{Binding AccidentId}" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" />
+								<Label Grid.Column="1" Text="{Binding Date}" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center"/>
+								<Label Grid.Column="2" Text="{Binding Status}" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center"/>
 							</Grid>
 						</StackLayout>
 					</ViewCell>

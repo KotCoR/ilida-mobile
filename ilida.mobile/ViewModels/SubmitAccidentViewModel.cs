@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Linq;
+using Xamarin.Forms;
 
 namespace ilida.mobile
 {
@@ -10,14 +14,17 @@ namespace ilida.mobile
 		public SubmitAccidentViewModel(INavigationService nav)
 		{
 			_nav = nav;
-			_vehicles = new List<Vehicle>()
+			_vehicles = new ObservableCollection<Vehicle>()
 			{
 				new Vehicle(){VehicleId=1}
 			};
+			AddVehicleCommand = new Command(() => AddVehicle());
 		}
 
-		private ICollection<Vehicle> _vehicles;
-		public ICollection<Vehicle> Vehicles
+		public ICommand AddVehicleCommand { get; set; }
+
+		private ObservableCollection<Vehicle> _vehicles;
+		public ObservableCollection<Vehicle> Vehicles
 		{
 			get
 			{
@@ -28,6 +35,16 @@ namespace ilida.mobile
 				_vehicles = value;
 				OnPropertyChanged(nameof(Vehicles));
 			}
+		}
+
+		public void AddVehicle()
+		{
+			var id = _vehicles.Last().VehicleId + 1;
+			var vehicle = new Vehicle()
+			{
+				VehicleId = id
+			};
+			_vehicles.Add(vehicle);
 		}
 	}
 }
